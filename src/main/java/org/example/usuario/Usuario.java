@@ -7,11 +7,11 @@ public class Usuario {
     private String sobrenome;
     private String email;
     private String senha;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String cpf;
     private String telefone;
 
-    public Usuario(String nome, String sobrenome, String email, String senha, Date dataNascimento, String cpf, String telefone) {
+    public Usuario(String nome, String sobrenome, String email, String senha, String dataNascimento, String cpf, String telefone) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
@@ -43,7 +43,7 @@ public class Usuario {
         return cpf;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
