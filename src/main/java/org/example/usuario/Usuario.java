@@ -66,6 +66,16 @@ public class Usuario {
         this.nome = nome;
     }
 
+    public void excluirConta(){
+        this.nome = null;
+        this.sobrenome = null;
+        this.email = null;
+        this.senha = null;
+        this.dataNascimento = null;
+        this.cpf = null;
+        this.telefone = null;
+    }
+
 
 
 

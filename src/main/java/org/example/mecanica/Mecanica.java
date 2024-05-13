@@ -1,5 +1,7 @@
 package org.example.mecanica;
 import  java.util.Arrays;
+
+import org.example.categoriaservico.CategoriaServico;
 import org.example.servico.Servico;
 
 import static java.lang.Long.sum;
@@ -13,7 +15,7 @@ public class Mecanica {
     private Integer notas[];
     private String cnpjMecanica;
 
-    public Mecanica(String nome, String endereco, String telefone, Servico servicos[], Double avaliacaoMedia, Integer notas, String cnpjMecanica) {
+    public Mecanica(String nome, String endereco, String telefone, Servico servicos[], String cnpjMecanica) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
@@ -25,7 +27,7 @@ public class Mecanica {
         for (int elemento : notas) {
             soma += elemento;
         }
-        return (double) (soma / notas.length);
+        return this.avaliacaoMedia = (double) soma / notas.length;
 
     }
     public void alterarCnpj(String cnpj){
@@ -40,5 +42,38 @@ public class Mecanica {
     public void adicionarServico(Servico servico){
         servicos = Arrays.copyOf(servicos, servicos.length + 1);
         servicos[servicos.length - 1] = servico;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public Servico[] getServicos() {
+        return servicos;
+    }
+
+    public Double getAvaliacaoMedia() {
+        return avaliacaoMedia;
+    }
+
+    public Integer[] getNotas() {
+        return notas;
+    }
+
+    public String getCnpjMecanica() {
+        return cnpjMecanica;
+    }
+
+    public void setNotas(Integer[] notas) {
+        this.notas = notas;
+        calcularAvaliacaoMedia();
     }
 }

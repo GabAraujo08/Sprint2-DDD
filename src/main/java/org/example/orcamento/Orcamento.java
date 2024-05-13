@@ -11,11 +11,11 @@ public class Orcamento {
     private Double valor;
     private Integer idOrcamento;
 
-    public Orcamento(Mecanica mecanica, Servico servicos[], Peca pecas[], Double valor, Integer idOrcamento) {
+    public Orcamento(Mecanica mecanica, Servico servicos[], Peca pecas[], Integer idOrcamento) {
         this.mecanica = mecanica;
         this.servicos = servicos;
         this.pecas = pecas;
-        this.valor = valor;
+        calculaValor();
         this.idOrcamento = idOrcamento;
     }
 
@@ -27,9 +27,26 @@ public class Orcamento {
          for (Servico servico : servicos) {
              valor += servico.getValor();
          }
-         return valor;
+         return this.valor = valor;
      }
 
+    public Mecanica getMecanica() {
+        return mecanica;
+    }
 
+    public Servico[] getServicos() {
+        return servicos;
+    }
 
+    public Peca[] getPecas() {
+        return pecas;
+    }
+
+    public Integer getIdOrcamento() {
+        return idOrcamento;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
 }

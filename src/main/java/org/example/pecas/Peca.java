@@ -41,6 +41,7 @@ public class Peca {
         this.descricao = descricao;
     }
     public void alterarPreco(double preco){
+        //TODO: Criar validações para inserções de valores, não permitir valores negativos, não permitir caracteres de texto, etc... Usar try catch e colocar um lançamento de exception :)
         this.preco = preco;
     }
     public void excluirPeca(){

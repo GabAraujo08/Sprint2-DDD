@@ -30,9 +30,10 @@ public class Agendamento {
 
 
     //TESTANDO A INSTÂNCIA DA CLASSE AGENDAMENTO
+    /*
     public static void main(String[] args) {
         Usuario usuario = new Usuario("João", "Alberto", "joao@gmail.com", "12345678910", "123456789", "123456789", "123456789");
-        Mecanica mecanica = new Mecanica("Mecânica do João", "Rua do João", "123456789", null, 5.0, 5, "12345678910");
+        Mecanica mecanica = new Mecanica("Mecânica do João", "Rua do João", "123456789", null, "123");
         LocalDateTime dataHora = LocalDateTime.now();
         Servico servico = new Servico("Troca de óleo", "Troca de óleo do motor", CategoriaServico.MECANICA, 100.0, 1);
         Servico servicosAgendados[] = {servico}; // Criando um Array que receberá objetos do tipo Servico
@@ -44,4 +45,5 @@ public class Agendamento {
         //TESTANDO SE O SERVICO FOI INSERIDO CORRETAMENTO DENTRO DE AGENDAMENTO
         System.out.println(agendamento.servicosAgendados[0].getNome());
     }
+     */
 }

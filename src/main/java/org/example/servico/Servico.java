@@ -48,4 +48,12 @@ public class Servico {
         this.categoria = categoria;
     }
 
+    public void excluirServico(){
+        this.nome = null;
+        this.descricao = null;
+        this.categoria = null;
+        this.valor = null;
+        this.idServico = null;
+    }
+
 }
