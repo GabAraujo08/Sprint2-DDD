@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 public class Agendamento {
     private Usuario usuario;
     private Mecanica mecanica;
+
     private LocalDateTime dataHora;
     private Servico servicosAgendados[];
     private StatusAgendamento status;
@@ -27,9 +28,30 @@ public class Agendamento {
         this.idAgendamento = idAgendamento;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public Mecanica getMecanica() {
+        return mecanica;
+    }
 
-    //TESTANDO A INSTÂNCIA DA CLASSE AGENDAMENTO
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public Servico[] getServicosAgendados() {
+        return servicosAgendados;
+    }
+
+    public StatusAgendamento getStatus() {
+        return status;
+    }
+
+    public Integer getIdAgendamento() {
+        return idAgendamento;
+    }
+//TESTANDO A INSTÂNCIA DA CLASSE AGENDAMENTO
     /*
     public static void main(String[] args) {
         Usuario usuario = new Usuario("João", "Alberto", "joao@gmail.com", "12345678910", "123456789", "123456789", "123456789");

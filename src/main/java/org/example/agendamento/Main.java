@@ -3,7 +3,7 @@ package org.example.agendamento;
 import org.example.categoriaservico.CategoriaServico;
 import org.example.mecanica.Mecanica;
 import org.example.servico.Servico;
-
+/*
 public class Main {
     public static void main(String[] args) {
         Servico servico = new Servico("Troca de óleo", "Troca de óleo do motor", CategoriaServico.MECANICA, 1.00, 1);
@@ -17,3 +17,5 @@ public class Main {
         System.out.println(mecanica.getAvaliacaoMedia());
     }
 }
+
+ */

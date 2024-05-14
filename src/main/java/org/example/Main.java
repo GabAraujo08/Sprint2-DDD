@@ -3,6 +3,7 @@ package org.example;
 import org.example.usuario.Usuario;
 import org.example.veiculo.Veiculo;
 
+/*
 public class Main {
     public static void main(String[] args) {
         Usuario usuario = new Usuario("João", "Silva", "joao@gmail.com","123456", "01/01/2000", "12345678910", "123456789");
@@ -11,3 +12,5 @@ public class Main {
         System.out.println(veiculo.getProprietario().getNome());
 }
 }
+
+ */
