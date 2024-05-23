@@ -6,8 +6,8 @@ import org.example.servico.Servico;
 
 public class Orcamento {
     private Mecanica mecanica;
-    private Servico servicos[];
-    private Peca pecas[];
+    private Servico[] servicos;
+    private Peca[] pecas;
     private Double valor;
     private Integer idOrcamento;
 
