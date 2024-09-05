@@ -1,6 +1,12 @@
 package org.example.usuario;
 
+import org.example.validadores.Validadores;
+
+import javax.xml.validation.Validator;
 import java.util.Date;
+import java.util.InputMismatchException;
+
+
 
 public class Usuario {
     private String nome;
@@ -11,14 +17,25 @@ public class Usuario {
     private String cpf;
     private String telefone;
 
-    public Usuario(String nome, String sobrenome, String email, String senha, String dataNascimento, String cpf, String telefone) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.senha = senha;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-        this.telefone = telefone;
+
+
+
+    public Usuario(String nome, String sobrenome, String email, String senha) {
+        if (nome.trim().isEmpty() || sobrenome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
+            throw new IllegalArgumentException("Todos os campos devem ser preenchidos");
+        }else{
+
+            this.nome = nome;
+            this.sobrenome = sobrenome;
+            this.email = email;
+            if (senha.length() < 8) {
+                throw new IllegalArgumentException("A senha deve ter no mínimo 8 caracteres");
+            }
+            else{
+                this.senha = senha;
+            }
+        }
+
     }
 
     public String getNome() {
@@ -34,7 +51,7 @@ public class Usuario {
     }
 
     public String getSenha() {
-        // TODO: É necessário que exista uma validação para que se possa visualizar a senha
+        // TODO: É necessário que exista uma validação para que se possa visualizar a senha ao invés do Hash
         return senha;
     }
 
@@ -50,6 +67,27 @@ public class Usuario {
     public String getTelefone() {
         return telefone;
     }
+
+    public void setCpf(String cpf) {
+       if(!Validadores.isCPF(cpf)){
+            throw new IllegalArgumentException("CPF inválido.");
+        }
+        this.cpf = cpf;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setTelefone(String telefone) {
+        telefone = Validadores.removeCaracteresEspeciais(telefone);
+        if (telefone.length() < 11) {
+            throw new IllegalArgumentException("Telefone inválido");
+        }
+        this.telefone = telefone;
+    }
+
     public void alterarSenha(String senha){
         this.senha = senha;
     }
@@ -75,6 +113,7 @@ public class Usuario {
         this.cpf = null;
         this.telefone = null;
     }
+
 
 
 

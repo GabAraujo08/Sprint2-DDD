@@ -1,23 +1,28 @@
-package org.example;
-
-import org.example.agendamento.Agendamento;
-import org.example.categoriaservico.CategoriaServico;
-import org.example.diagnostico.Diagnostico;
-import org.example.feedback.Feedback;
-import org.example.mecanica.Mecanica;
-import org.example.orcamento.Orcamento;
-import org.example.pecas.Peca;
-import org.example.servico.Servico;
-import org.example.statusagendamento.StatusAgendamento;
-import org.example.usuario.Usuario;
-import org.example.veiculo.Veiculo;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
-
-
-public class Main {
-    public static void main(String[] args) {
+//package org.example;
+//import org.example.agendamento.Agendamento;
+//import org.example.categoriaservico.CategoriaServico;
+//import org.example.diagnostico.Diagnostico;
+//import org.example.feedback.Feedback;
+//import org.example.mecanica.Mecanica;
+//import org.example.orcamento.Orcamento;
+//import org.example.pecas.Peca;
+//import org.example.servico.Servico;
+//import org.example.statusagendamento.StatusAgendamento;
+//import org.example.usuario.Usuario;
+//import org.example.veiculo.Veiculo;
+//
+//import java.time.LocalDateTime;
+//import java.util.Arrays;
+//
+//public class Main {
+//    public static void main(String[] args) {
+//        Usuario usuario = new Usuario("João", "Alberto", "joao@gmail.com", "12345678910");
+//
+//        Veiculo veiculo = new Veiculo("Chevrolet", "Onix", 2021, "ABC1234", "Preto", 0, usuario, "123456789");
+//    }
+//}
+        /*
+        DESCONSIDERAR ESSA MAIN, TESTES FEITOS USANDO TÉCNICA DE TESTES UNITARIOS
 
         Usuario usuario = new Usuario("João", "Alberto", "joao@gmail.com", "12345678910", "123456789", "123456789", "123456789");
 
@@ -134,3 +139,4 @@ public class Main {
     }
 }
 
+*/

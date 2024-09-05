@@ -10,6 +10,7 @@ public class Servico {
     private Integer idServico;
 
     public Servico(String nome, String descricao, CategoriaServico categoria, Double valor, Integer idServico) {
+
         this.nome = nome;
         this.descricao = descricao;
         this.categoria = categoria;
@@ -38,10 +39,18 @@ public class Servico {
     }
 
     public void alterarValorServico(Double valor){
+        if (valor < 0){
+            throw new IllegalArgumentException("O valor do serviço não pode ser negativo.");
+        }else if(valor.equals(this.valor)){
+            throw new IllegalArgumentException("O valor do serviço já está definido como R$" + getValor());
+        }
         this.valor = valor;
     }
 
     public void alterarDescricaoServico(String descricao){
+        if (descricao == null || descricao.trim().isEmpty()) {
+            throw new IllegalArgumentException("A descrição do serviço não pode ser vazia.");
+        }
         this.descricao = descricao;
     }
     public void alterarCategoriaServico(CategoriaServico categoria){

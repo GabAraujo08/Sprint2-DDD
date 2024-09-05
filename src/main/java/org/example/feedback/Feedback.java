@@ -13,6 +13,10 @@ public class Feedback {
     public Feedback(Usuario usuario, Mecanica mecanica, String comentarios,Integer nota, Integer idFeedback) {
         this.usuario = usuario;
         this.mecanica = mecanica;
+
+        if (comentarios == null || comentarios.trim().isEmpty()) {
+            throw new IllegalArgumentException("O comentário não pode ser vazio.");
+        }
         this.comentarios = comentarios;
         if(!verificaNotasIsValid(nota)){
             throw new IllegalArgumentException("Nota inválida");

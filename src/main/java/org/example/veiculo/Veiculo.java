@@ -57,7 +57,17 @@ public class Veiculo {
     }
 
     public void atualizarKilometragem(Integer kilometragem){
-        this.kilometragem = kilometragem;
+        try{
+            if (kilometragem < 0) {
+                throw new IllegalArgumentException("Kilometragem não pode ser negativa");
+            }
+            else {
+                this.kilometragem = kilometragem;
+            }
+        }catch (Exception e){
+            throw new RuntimeException("Erro ao atualizar a kilometragem do veículo");
+        }
+
     }
     public void excluirVeiculo(){
         this.marca = null;
