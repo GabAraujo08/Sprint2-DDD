@@ -20,7 +20,7 @@ public class Orcamento {
     }
 
      private Double calculaValor() {
-         Double valor = 0.0;
+         Double valor = (Double) 0.0;
          for (Peca peca : pecas) {
              valor += peca.getPreco();
          }
