@@ -1,6 +1,6 @@
-package org.example.servico;
+package org.example.entities.servico;
 
-import org.example.categoriaservico.CategoriaServico;
+import org.example.entities.categoriaservico.CategoriaServico;
 
 public class Servico {
     private String nome;

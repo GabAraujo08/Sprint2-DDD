@@ -1,7 +1,7 @@
-package org.example.feedback;
+package org.example.entities.feedback;
 
-import org.example.mecanica.Mecanica;
-import org.example.usuario.Usuario;
+import org.example.entities.mecanica.Mecanica;
+import org.example.entities.usuario.Usuario;
 
 public class Feedback {
     private Usuario usuario;

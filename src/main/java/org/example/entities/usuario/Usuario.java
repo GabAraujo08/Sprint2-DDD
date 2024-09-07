@@ -1,14 +1,15 @@
-package org.example.usuario;
-import org.example.validadores.Validadores;
+package org.example.entities.usuario;
+import org.example.dao.UsuarioDao;
+import org.example.entities.validadores.Validadores;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Usuario implements UsuarioDao {
+public class Usuario{
 
-    private final Connection connection;
+
 
     private String nome;
     private String sobrenome;
@@ -18,8 +19,8 @@ public class Usuario implements UsuarioDao {
     private String cpf;
     private String telefone;
 
-    public Usuario(Connection connection, String nome, String sobrenome, String email, String senha) {
-        this.connection = connection;
+    public Usuario(String nome, String sobrenome, String email, String senha) {
+
         if (nome.trim().isEmpty() || sobrenome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
             throw new IllegalArgumentException("Todos os campos devem ser preenchidos");
         }else{
@@ -116,43 +117,4 @@ public class Usuario implements UsuarioDao {
         this.telefone = null;
     }
 
-
-    @Override
-    public void create(Usuario usuario) throws SQLException {
-        String sql = "insert into t_usuario(nome, sobrenome, email, senha, data_nascimento, cpf, telefone) values(?,?,?,?,?,?,?)";
-
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        pstmt.setString(1, usuario.getNome());
-        pstmt.setString(2, usuario.getSobrenome());
-        pstmt.setString(3, usuario.getEmail());
-        pstmt.setString(4, usuario.getSenha());
-        pstmt.setString(5, usuario.getDataNascimento());
-        pstmt.setString(6, usuario.getCpf());
-        pstmt.setString(7, usuario.getTelefone());
-    }
-
-    @Override
-    public List<Usuario> readAll() throws SQLException {
-        String sql = "SELECT * FROM t_usuario";
-        List<Usuario> result = new ArrayList<>();
-        Statement stmt = connection.prepareStatement(sql);
-        ResultSet rs = stmt.executeQuery(sql);
-        while (rs.next()){
-            Long id = rs.getLong("id");
-            String name = rs.getString("name");
-            int idade = rs.getInt("idade");
-            result.add(new Usuario(, nome, sobrenome, email, senha));
-        }
-        return result;
-    }
-
-    @Override
-    public void update(Usuario usuario) throws SQLException {
-
-    }
-
-    @Override
-    public void delete(Long id) throws SQLException {
-
-    }
 }

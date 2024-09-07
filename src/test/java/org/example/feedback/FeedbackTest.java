@@ -1,7 +1,8 @@
 package org.example.feedback;
 
-import org.example.mecanica.Mecanica;
-import org.example.usuario.Usuario;
+import org.example.entities.feedback.Feedback;
+import org.example.entities.mecanica.Mecanica;
+import org.example.entities.usuario.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

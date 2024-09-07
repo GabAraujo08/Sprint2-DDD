@@ -1,4 +1,4 @@
-package org.example.categoriaservico;
+package org.example.entities.categoriaservico;
 
 public enum CategoriaServico {
     MECANICA,

@@ -1,4 +1,4 @@
-package org.example.pecas;
+package org.example.entities.pecas;
 
 public class Peca {
     private String nome;

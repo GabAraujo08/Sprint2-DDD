@@ -1,6 +1,8 @@
 
 
-package org.example.usuario;
+package org.example.dao;
+
+import org.example.entities.usuario.Usuario;
 
 import java.sql.SQLException;
 import java.util.List;

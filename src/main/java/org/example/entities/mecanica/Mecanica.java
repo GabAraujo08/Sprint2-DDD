@@ -1,10 +1,7 @@
-package org.example.mecanica;
+package org.example.entities.mecanica;
 import  java.util.Arrays;
 
-import org.example.categoriaservico.CategoriaServico;
-import org.example.servico.Servico;
-
-import static java.lang.Long.sum;
+import org.example.entities.servico.Servico;
 
 public class Mecanica {
     private String nome;

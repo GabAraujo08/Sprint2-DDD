@@ -1,5 +1,6 @@
 package org.example.diagnostico;
 
+import org.example.entities.diagnostico.Diagnostico;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

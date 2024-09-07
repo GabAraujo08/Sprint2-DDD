@@ -1,8 +1,5 @@
-package org.example.agendamento;
+package org.example.entities.agendamento;
 
-import org.example.categoriaservico.CategoriaServico;
-import org.example.mecanica.Mecanica;
-import org.example.servico.Servico;
 /*
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package org.example.diagnostico;
+package org.example.entities.diagnostico;
 
 public class Diagnostico {
     private String descricao;

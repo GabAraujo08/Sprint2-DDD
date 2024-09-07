@@ -1,6 +1,6 @@
 package org.example.validadores;
 
-import org.example.usuario.Usuario;
+import org.example.entities.validadores.Validadores;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

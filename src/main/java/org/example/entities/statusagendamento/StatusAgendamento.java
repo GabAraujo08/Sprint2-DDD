@@ -1,4 +1,4 @@
-package org.example.statusagendamento;
+package org.example.entities.statusagendamento;
 
 public enum StatusAgendamento {
     ATIVO,

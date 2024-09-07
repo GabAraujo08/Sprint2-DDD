@@ -1,4 +1,4 @@
-package org.example.validadores;
+package org.example.entities.validadores;
 
 import java.util.InputMismatchException;
 

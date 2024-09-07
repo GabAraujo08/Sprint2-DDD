@@ -1,6 +1,7 @@
 package org.example.servico;
 
-import org.example.categoriaservico.CategoriaServico;
+import org.example.entities.categoriaservico.CategoriaServico;
+import org.example.entities.servico.Servico;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

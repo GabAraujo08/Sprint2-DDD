@@ -1,9 +1,10 @@
 package org.example.agendamento;
 
-import org.example.mecanica.Mecanica;
-import org.example.servico.Servico;
-import org.example.statusagendamento.StatusAgendamento;
-import org.example.usuario.Usuario;
+import org.example.entities.agendamento.Agendamento;
+import org.example.entities.mecanica.Mecanica;
+import org.example.entities.servico.Servico;
+import org.example.entities.statusagendamento.StatusAgendamento;
+import org.example.entities.usuario.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

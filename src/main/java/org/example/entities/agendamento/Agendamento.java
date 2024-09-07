@@ -1,13 +1,11 @@
-package org.example.agendamento;
+package org.example.entities.agendamento;
 
-import org.example.categoriaservico.CategoriaServico;
-import org.example.mecanica.Mecanica;
-import org.example.servico.Servico;
-import org.example.statusagendamento.StatusAgendamento;
-import org.example.usuario.Usuario;
+import org.example.entities.mecanica.Mecanica;
+import org.example.entities.servico.Servico;
+import org.example.entities.statusagendamento.StatusAgendamento;
+import org.example.entities.usuario.Usuario;
 
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 
 public class Agendamento {

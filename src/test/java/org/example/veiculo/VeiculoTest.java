@@ -1,6 +1,7 @@
 package org.example.veiculo;
 
-import org.example.usuario.Usuario;
+import org.example.entities.usuario.Usuario;
+import org.example.entities.veiculo.Veiculo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

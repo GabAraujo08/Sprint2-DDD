@@ -1,8 +1,8 @@
-package org.example.orcamento;
+package org.example.entities.orcamento;
 
-import org.example.mecanica.Mecanica;
-import org.example.pecas.Peca;
-import org.example.servico.Servico;
+import org.example.entities.mecanica.Mecanica;
+import org.example.entities.pecas.Peca;
+import org.example.entities.servico.Servico;
 
 public class Orcamento {
     private Mecanica mecanica;

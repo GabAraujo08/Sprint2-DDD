@@ -1,6 +1,6 @@
-package org.example.veiculo;
+package org.example.entities.veiculo;
 
-import org.example.usuario.Usuario;
+import org.example.entities.usuario.Usuario;
 
 public class Veiculo {
     private String marca;

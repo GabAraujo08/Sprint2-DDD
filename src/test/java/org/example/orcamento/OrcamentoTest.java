@@ -1,9 +1,10 @@
 package org.example.orcamento;
 
-import org.example.categoriaservico.CategoriaServico;
-import org.example.mecanica.Mecanica;
-import org.example.pecas.Peca;
-import org.example.servico.Servico;
+import org.example.entities.categoriaservico.CategoriaServico;
+import org.example.entities.mecanica.Mecanica;
+import org.example.entities.orcamento.Orcamento;
+import org.example.entities.pecas.Peca;
+import org.example.entities.servico.Servico;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

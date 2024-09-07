@@ -1,7 +1,8 @@
 package org.example.mecanica;
 
-import org.example.categoriaservico.CategoriaServico;
-import org.example.servico.Servico;
+import org.example.entities.categoriaservico.CategoriaServico;
+import org.example.entities.mecanica.Mecanica;
+import org.example.entities.servico.Servico;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

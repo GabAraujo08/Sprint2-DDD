@@ -1,5 +1,6 @@
 package org.example.pecas;
 
+import org.example.entities.pecas.Peca;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
