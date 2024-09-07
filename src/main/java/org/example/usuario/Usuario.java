@@ -1,14 +1,18 @@
 package org.example.usuario;
-
+import org.example.config.DatabaseConfig;
 import org.example.validadores.Validadores;
-
 import javax.xml.validation.Validator;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.List;
 
 
+public class Usuario implements UsuarioDao {
 
-public class Usuario {
+    private final Connection connection;
+
     private String nome;
     private String sobrenome;
     private String email;
@@ -16,9 +20,6 @@ public class Usuario {
     private String dataNascimento;
     private String cpf;
     private String telefone;
-
-
-
 
     public Usuario(String nome, String sobrenome, String email, String senha) {
         if (nome.trim().isEmpty() || sobrenome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
@@ -55,7 +56,6 @@ public class Usuario {
         return senha;
     }
 
-
     public String getCpf() {
         return cpf;
     }
@@ -91,15 +91,19 @@ public class Usuario {
     public void alterarSenha(String senha){
         this.senha = senha;
     }
+
     public void alterarTelefone(String telefone){
         this.telefone = telefone;
     }
+
     public void alterarEmail(String email){
         this.email = email;
     }
+
     public void alterarSobrenome(String sobrenome){
         this.sobrenome = sobrenome;
     }
+
     public void alterarNome(String nome){
         this.nome = nome;
     }
@@ -115,7 +119,42 @@ public class Usuario {
     }
 
 
+    @Override
+    public void create(Usuario usuario) throws SQLException {
+        String sql = "insert into t_usuario(nome, sobrenome, email, senha, data_nascimento, cpf, telefone) values(?,?,?,?,?,?,?)";
 
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, usuario.getNome());
+        pstmt.setString(2, usuario.getSobrenome());
+        pstmt.setString(3, usuario.getEmail());
+        pstmt.setString(4, usuario.getSenha());
+        pstmt.setString(5, usuario.getDataNascimento());
+        pstmt.setString(6, usuario.getCpf());
+        pstmt.setString(7, usuario.getTelefone());
+    }
 
+    @Override
+    public List<Usuario> readAll() throws SQLException {
+        String sql = "SELECT * FROM t_usuario";
+        List<Usuario> result = new ArrayList<>();
+        Statement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()){
+            Long id = rs.getLong("id");
+            String name = rs.getString("name");
+            int idade = rs.getInt("idade");
+            result.add(new Usuario(nome, sobrenome, email, senha));
+        }
+        return result;
+    }
 
+    @Override
+    public void update(Usuario usuario) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(Long id) throws SQLException {
+
+    }
 }
