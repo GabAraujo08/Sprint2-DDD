@@ -1,32 +1,25 @@
 package org.example.entities.usuario;
-import org.example.dao.UsuarioDao;
 import org.example.entities.validadores.Validadores;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Usuario{
 
-
-
     private String nome;
-    private String sobrenome;
+    private String endereco;
     private String email;
     private String senha;
     private String dataNascimento;
     private String cpf;
     private String telefone;
 
-    public Usuario(String nome, String sobrenome, String email, String senha) {
+    public Usuario(String nome, String endereco, String email, String senha) {
 
-        if (nome.trim().isEmpty() || sobrenome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
+        if (nome.trim().isEmpty() || endereco.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
             throw new IllegalArgumentException("Todos os campos devem ser preenchidos");
         }else{
 
             this.nome = nome;
-            this.sobrenome = sobrenome;
+            this.endereco = endereco;
             this.email = email;
             if (senha.length() < 8) {
                 throw new IllegalArgumentException("A senha deve ter no mínimo 8 caracteres");
@@ -42,8 +35,8 @@ public class Usuario{
         return nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getEndereco() {
+        return endereco;
     }
 
     public String getEmail() {
@@ -74,6 +67,7 @@ public class Usuario{
         this.cpf = cpf;
     }
 
+
     public void setDataNascimento(String dataNascimento) {
 
         this.dataNascimento = dataNascimento;
@@ -99,8 +93,8 @@ public class Usuario{
         this.email = email;
     }
 
-    public void alterarSobrenome(String sobrenome){
-        this.sobrenome = sobrenome;
+    public void alterarEndereco(String endereco){
+        this.endereco = endereco;
     }
 
     public void alterarNome(String nome){
@@ -109,7 +103,7 @@ public class Usuario{
 
     public void excluirConta(){
         this.nome = null;
-        this.sobrenome = null;
+        this.endereco = null;
         this.email = null;
         this.senha = null;
         this.dataNascimento = null;
