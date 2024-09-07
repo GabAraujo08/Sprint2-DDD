@@ -1,11 +1,8 @@
 package org.example.usuario;
-import org.example.config.DatabaseConfig;
 import org.example.validadores.Validadores;
-import javax.xml.validation.Validator;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.List;
 
 
@@ -21,7 +18,8 @@ public class Usuario implements UsuarioDao {
     private String cpf;
     private String telefone;
 
-    public Usuario(String nome, String sobrenome, String email, String senha) {
+    public Usuario(Connection connection, String nome, String sobrenome, String email, String senha) {
+        this.connection = connection;
         if (nome.trim().isEmpty() || sobrenome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
             throw new IllegalArgumentException("Todos os campos devem ser preenchidos");
         }else{
@@ -143,7 +141,7 @@ public class Usuario implements UsuarioDao {
             Long id = rs.getLong("id");
             String name = rs.getString("name");
             int idade = rs.getInt("idade");
-            result.add(new Usuario(nome, sobrenome, email, senha));
+            result.add(new Usuario(, nome, sobrenome, email, senha));
         }
         return result;
     }
