@@ -8,9 +8,10 @@ public class Validadores {
         if (input == null) {
             return null;
         }
-        return input.replaceAll("[.\\-()\\s]", "");
+        return input.replaceAll("[.\\-()\\s]", ""); // Aqui, o \\s remove qualquer espaço
     }
     public static boolean isCPF(String CPF) {
+
         if (CPF == null)
             return false;
 

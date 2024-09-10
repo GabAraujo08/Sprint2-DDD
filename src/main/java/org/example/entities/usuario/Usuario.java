@@ -1,6 +1,8 @@
 package org.example.entities.usuario;
 import org.example.entities.validadores.Validadores;
 
+import static org.example.entities.validadores.Validadores.removeCaracteresEspeciais;
+
 
 public class Usuario{
 
@@ -12,14 +14,14 @@ public class Usuario{
     private String cpf;
     private String telefone;
 
-    public Usuario(String nome, String endereco, String email, String senha) {
-
-        if (nome.trim().isEmpty() || endereco.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()) {
+    public Usuario(String nome, String email, String senha, String cpf) {
+        cpf = removeCaracteresEspeciais(cpf);
+        if (nome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty() || cpf.trim().isEmpty()) {
             throw new IllegalArgumentException("Todos os campos devem ser preenchidos");
-        }else{
+        } else {
 
             this.nome = nome;
-            this.endereco = endereco;
+
             this.email = email;
             if (senha.length() < 8) {
                 throw new IllegalArgumentException("A senha deve ter no mínimo 8 caracteres");
@@ -27,6 +29,10 @@ public class Usuario{
             else{
                 this.senha = senha;
             }
+            if(!Validadores.isCPF(cpf)){
+                throw new IllegalArgumentException("CPF inválido.");
+            }
+            this.cpf = cpf;
         }
 
     }
@@ -61,6 +67,7 @@ public class Usuario{
     }
 
     public void setCpf(String cpf) {
+        cpf = removeCaracteresEspeciais(cpf);
        if(!Validadores.isCPF(cpf)){
             throw new IllegalArgumentException("CPF inválido.");
         }
@@ -74,7 +81,7 @@ public class Usuario{
     }
 
     public void setTelefone(String telefone) {
-        telefone = Validadores.removeCaracteresEspeciais(telefone);
+        telefone = removeCaracteresEspeciais(telefone);
         if (telefone.length() < 11) {
             throw new IllegalArgumentException("Telefone inválido");
         }
@@ -109,6 +116,18 @@ public class Usuario{
         this.dataNascimento = null;
         this.cpf = null;
         this.telefone = null;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario {\n" +
+                "  nome='" + nome + "',\n" +
+                "  email='" + email + "',\n" +
+                "  cpf='" + cpf + "',\n" +
+                "  telefone='" + telefone + "',\n" +
+                "  endereco='" + endereco + "',\n" +
+                "  dataNascimento='" + dataNascimento + "'\n" +
+                '}';
     }
 
 }
