@@ -1,4 +1,4 @@
-package org.example.servico;
+package org.example.entities.servico;
 
 import org.example.entities.categoriaservico.CategoriaServico;
 import org.example.entities.servico.Servico;

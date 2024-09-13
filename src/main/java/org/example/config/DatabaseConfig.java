@@ -12,6 +12,7 @@ public class DatabaseConfig {
     private final String url;
     private final String user;
     private final String password;
+    private Connection connection;
 
     public DatabaseConfig(String url, String user, String password) {
         this.url = url;
@@ -20,7 +21,8 @@ public class DatabaseConfig {
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(url,user,password);
+        connection = DriverManager.getConnection(url, user, password);
+        return connection;
     }
 
 }

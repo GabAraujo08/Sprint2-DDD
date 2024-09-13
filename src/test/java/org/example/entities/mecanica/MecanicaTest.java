@@ -1,4 +1,4 @@
-package org.example.mecanica;
+package org.example.entities.mecanica;
 
 import org.example.entities.categoriaservico.CategoriaServico;
 import org.example.entities.mecanica.Mecanica;

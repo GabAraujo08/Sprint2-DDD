@@ -3,13 +3,20 @@ package org.example.entities.validadores;
 import java.util.InputMismatchException;
 
 public class Validadores {
-
+    /**
+     * Remove caracteres especiais de uma string.
+     * @param input O CPF com o devido tratamento realizado.
+     */
     public static String removeCaracteresEspeciais(String input) {
         if (input == null) {
             return null;
         }
         return input.replaceAll("[.\\-()\\s]", ""); // Aqui, o \\s remove qualquer espaço
     }
+    /**
+     * Verifica se um CPF é válido.
+     * @param CPF O CPF a ser verificado.
+     */
     public static boolean isCPF(String CPF) {
 
         if (CPF == null)

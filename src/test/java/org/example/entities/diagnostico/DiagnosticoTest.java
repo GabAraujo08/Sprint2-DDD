@@ -1,4 +1,4 @@
-package org.example.diagnostico;
+package org.example.entities.diagnostico;
 
 import org.example.entities.diagnostico.Diagnostico;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package org.example.orcamento;
+package org.example.entities.orcamento;
 
 import org.example.entities.categoriaservico.CategoriaServico;
 import org.example.entities.mecanica.Mecanica;

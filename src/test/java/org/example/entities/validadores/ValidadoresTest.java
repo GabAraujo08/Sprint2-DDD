@@ -1,4 +1,4 @@
-package org.example.validadores;
+package org.example.entities.validadores;
 
 import org.example.entities.validadores.Validadores;
 import org.junit.jupiter.api.Assertions;

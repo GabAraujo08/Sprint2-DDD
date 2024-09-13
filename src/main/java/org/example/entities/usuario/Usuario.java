@@ -66,14 +66,6 @@ public class Usuario{
         return telefone;
     }
 
-    public void setCpf(String cpf) {
-        cpf = removeCaracteresEspeciais(cpf);
-       if(!Validadores.isCPF(cpf)){
-            throw new IllegalArgumentException("CPF inválido.");
-        }
-        this.cpf = cpf;
-    }
-
 
     public void setDataNascimento(String dataNascimento) {
 
@@ -89,11 +81,10 @@ public class Usuario{
     }
 
     public void alterarSenha(String senha){
+        if (senha.length() < 8) {
+            throw new IllegalArgumentException("A senha deve ter no mínimo 8 caracteres");
+        }
         this.senha = senha;
-    }
-
-    public void alterarTelefone(String telefone){
-        this.telefone = telefone;
     }
 
     public void alterarEmail(String email){

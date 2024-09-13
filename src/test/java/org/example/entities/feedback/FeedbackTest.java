@@ -1,4 +1,4 @@
-package org.example.feedback;
+package org.example.entities.feedback;
 
 import org.example.entities.feedback.Feedback;
 import org.example.entities.mecanica.Mecanica;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FeedbackTest {
-    Usuario carlos = new Usuario(, null, null, null, null);
+    Usuario carlos = new Usuario("Carlos", "carlos@gmail.com", "12345678", "31413468012");
     Mecanica mecanica = new Mecanica("nome", "endereco", "telefone", null, "cnpjMecanica");
     @Test
     void quando_construtor_criado_todos_campos_diferente_null(){

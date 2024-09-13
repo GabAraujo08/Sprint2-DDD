@@ -15,7 +15,5 @@ public interface UsuarioDao {
     //TODO: update
     void update(Usuario usuario) throws SQLException;
     //TODO: delete
-    void delete(Long id) throws SQLException;
-
-
+    void delete(String cpf) throws SQLException;
 }
