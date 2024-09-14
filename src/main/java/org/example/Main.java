@@ -21,10 +21,10 @@ public class Main {
         //CRIANDO UM USUÁRIO
 
 //        try {
-//            Usuario usuario = new Usuario("gabriel", "gabriel123@gmail.com", "12345678", "371.771.680-87");
+//            Usuario usuario = new Usuario("gabriel TESTANDO", "gabriel123@gmail.com", "12345678", "467.871.690-43");
 //            usuario.setDataNascimento("1999-12-12");
 //            usuario.alterarEndereco("Rua dos bobos, nº 19");
-//            usuario.alterarTelefone("11999999999");
+//            usuario.setTelefone("11999999999");
 //            usuarioDao.create(usuario);
 //        } catch (SQLException e) {
 //            System.out.println("Pessoa não foi salva");
