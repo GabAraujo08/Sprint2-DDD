@@ -13,8 +13,8 @@ public class Main {
     public static void main(String[] args) {
         DatabaseConfig db = new DatabaseConfig(
                 "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL",
-                "rm558802",
-                "fiap24");
+                "",
+                "");
         UsuarioDao usuarioDao = new UsuarioDaoImpl(db);
 
 
