@@ -1,28 +1,21 @@
 package org.example.config;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 public class DatabaseConfig {
 
-    //Informações para conectar
-    // host, porta, schema, usuario e senha
 
-    private final String url;
-    private final String user;
-    private final String password;
-    private Connection connection;
-
-    public DatabaseConfig(String url, String user, String password) {
-        this.url = url;
-        this.user = user;
-        this.password = password;
+    private DatabaseConfig() {
+       throw new UnsupportedOperationException();
     }
 
-    public Connection getConnection() throws SQLException {
-        connection = DriverManager.getConnection(url, user, password);
-        return connection;
+    static String getUrl(){
+        return "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
     }
 
+    static String getUser(){
+        return "rm558802";
+    }
+
+    static String getPassword(){
+        return "fiap24";
+    }
 }

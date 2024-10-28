@@ -1,11 +1,12 @@
 package org.example.entities.usuario;
+
 import org.example.entities.validadores.Validadores;
 
 import static org.example.entities.validadores.Validadores.removeCaracteresEspeciais;
 
+public class Usuario {
 
-public class Usuario{
-
+    private Long id;
     private String nome;
     private String endereco;
     private String email;
@@ -14,28 +15,42 @@ public class Usuario{
     private String cpf;
     private String telefone;
 
-    public Usuario(String nome, String email, String senha, String cpf) {
+    public Usuario(Long id, String nome, String email, String senha, String cpf) {
+        this.id = id;
         cpf = removeCaracteresEspeciais(cpf);
+
         if (nome.trim().isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty() || cpf.trim().isEmpty()) {
             throw new IllegalArgumentException("Todos os campos devem ser preenchidos");
-        } else {
-
-            this.nome = nome;
-
-            this.email = email;
-            if (senha.length() < 8) {
-                throw new IllegalArgumentException("A senha deve ter no mínimo 8 caracteres");
-            }
-            else{
-                this.senha = senha;
-            }
-            if(!Validadores.isCPF(cpf)){
-                throw new IllegalArgumentException("CPF inválido.");
-            }
-            this.cpf = cpf;
         }
 
+        this.nome = nome;
+        this.email = email;
+
+        if (senha.length() < 8) {
+            throw new IllegalArgumentException("A senha deve ter no mínimo 8 caracteres");
+        } else {
+            this.senha = senha;
+        }
+
+        if (!Validadores.isCPF(cpf)) {
+            throw new IllegalArgumentException("CPF inválido.");
+        }
+
+        this.cpf = cpf;
     }
+
+    public Usuario(Long id, String nome, String endereco, String senha, String email, String dataNascimento, String cpf, String telefone){
+        this(id, nome, email, senha, cpf);
+        this.endereco = endereco;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+    }
+
+    // Getters
+    public Long getId() {
+        return id;
+    }
+
 
     public String getNome() {
         return nome;
@@ -50,7 +65,6 @@ public class Usuario{
     }
 
     public String getSenha() {
-        // TODO: É necessário que exista uma validação para que se possa visualizar a senha ao invés do Hash
         return senha;
     }
 
@@ -66,10 +80,13 @@ public class Usuario{
         return telefone;
     }
 
-
+    // Setters e métodos de atualização
     public void setDataNascimento(String dataNascimento) {
-
         this.dataNascimento = dataNascimento;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setTelefone(String telefone) {
@@ -80,26 +97,27 @@ public class Usuario{
         this.telefone = telefone;
     }
 
-    public void alterarSenha(String senha){
+    public void alterarSenha(String senha) {
         if (senha.length() < 8) {
             throw new IllegalArgumentException("A senha deve ter no mínimo 8 caracteres");
         }
         this.senha = senha;
     }
 
-    public void alterarEmail(String email){
+    public void alterarEmail(String email) {
         this.email = email;
     }
 
-    public void alterarEndereco(String endereco){
+    public void alterarEndereco(String endereco) {
         this.endereco = endereco;
     }
 
-    public void alterarNome(String nome){
+    public void alterarNome(String nome) {
         this.nome = nome;
     }
 
-    public void excluirConta(){
+    public void excluirConta() {
+        this.id = null;
         this.nome = null;
         this.endereco = null;
         this.email = null;
@@ -112,6 +130,7 @@ public class Usuario{
     @Override
     public String toString() {
         return "Usuario {\n" +
+                "  id='" + id + "',\n" +
                 "  nome='" + nome + "',\n" +
                 "  email='" + email + "',\n" +
                 "  cpf='" + cpf + "',\n" +
@@ -120,5 +139,4 @@ public class Usuario{
                 "  dataNascimento='" + dataNascimento + "'\n" +
                 '}';
     }
-
 }

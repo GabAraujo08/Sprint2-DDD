@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VeiculoTest {
-    Usuario carlos = new Usuario("Gabriel", "gabriel@gmail.com", "12345678", "31413468012");
+    Usuario carlos = new Usuario(1l ,"Gabriel", "gabriel@gmail.com", "12345678", "31413468012");
     @Test
     void quando_construtor_todos_campos_diferente_null() {
 

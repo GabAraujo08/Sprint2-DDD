@@ -3,17 +3,20 @@
 package org.example.dao.usuariodao;
 
 import org.example.entities.usuario.Usuario;
+import org.example.exceptions.usuario.UsuarioNotFoundException;
+import org.example.exceptions.usuario.UsuarioNotSavedException;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 public interface UsuarioDao {
-    //TODO: create
-    void create(Usuario usuario) throws SQLException;
-    //TODO: read all
-    List<Usuario> readAll() throws SQLException;
-    //TODO: update
-    void update(Usuario usuario) throws SQLException;
-    //TODO: delete
-    void delete(String cpf) throws SQLException;
+
+    Usuario create(Usuario usuario, Connection connection) throws SQLException, UsuarioNotSavedException;
+
+    List<Usuario> readAll() ;
+
+    Usuario update(Usuario usuario, Connection connection) throws SQLException, UsuarioNotFoundException;
+
+    void delete(String cpf, Connection connection) throws UsuarioNotFoundException, SQLException;
 }

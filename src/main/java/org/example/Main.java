@@ -11,11 +11,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        DatabaseConfig db = new DatabaseConfig(
-                "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL",
-                "",
-                "");
-        UsuarioDao usuarioDao = new UsuarioDaoImpl(db);
+//        DatabaseConfig db = new DatabaseConfig(
+//                "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL",
+//                "",
+//                "");
+//        UsuarioDao usuarioDao = new UsuarioDaoImpl(db);
 
 
         //CRIANDO UM USUÁRIO
