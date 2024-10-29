@@ -15,6 +15,10 @@ public class Usuario {
     private String cpf;
     private String telefone;
 
+
+    public Usuario() {
+    }
+
     public Usuario(Long id, String nome, String email, String senha, String cpf) {
         this.id = id;
         cpf = removeCaracteresEspeciais(cpf);

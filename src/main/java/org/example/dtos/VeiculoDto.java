@@ -1,5 +1,7 @@
 package org.example.dtos;
 
+import org.example.entities.usuario.Usuario;
+
 public class VeiculoDto {
     private String marca;
     private String modelo;
@@ -10,6 +12,8 @@ public class VeiculoDto {
     private Long proprietarioId;
     private String chassi;
     private String tipo;
+
+
 
     public String getTipo() {
         return tipo;

@@ -179,42 +179,44 @@ public class UsuarioDaoImpl implements UsuarioDao {
         }
     }
 
-//    public Usuario findById(long id, Connection connection) throws UsuarioNotFoundException, SQLException {
-//        final String sql = "SELECT * FROM T_USUARIO WHERE id_usuario = ?";
-//        Usuario usuario = null;
-//
-//        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-//            pstmt.setLong(1, id);
-//            try (ResultSet resultSet = pstmt.executeQuery()) {
-//                if (resultSet.next()) {
-//                    String nome = resultSet.getString("nm_usuario");
-//                    String email = resultSet.getString("email");
-//                    String senha = resultSet.getString("senha_login");
-//                    String cpf = resultSet.getString("cpf");
-//
-//                    // Cria o objeto Usuario com os campos obrigatórios
-//                    usuario = new Usuario(id, nome, email, senha, cpf);
-//
-//                    // Configura os campos opcionais, se presentes
-//                    String dataNascimento = resultSet.getString("dt_nasc");
-//                    if (dataNascimento != null && !dataNascimento.trim().isEmpty()) {
-//                        usuario.setDataNascimento(dataNascimento);
-//                    }
-//                    String telefone = resultSet.getString("telefone_usuario");
-//                    if (telefone != null && !telefone.trim().isEmpty()) {
-//                        usuario.setTelefone(telefone);
-//                    }
-//                    String endereco = resultSet.getString("endereco_usuario");
-//                    if (endereco != null && !endereco.trim().isEmpty()) {
-//                        usuario.alterarEndereco(endereco);
-//                    }
-//                } else {
-//                    throw new UsuarioNotFoundException();
-//                }
-//            }
-//        }
-//        return usuario;
-//    }
+    @Override
+    public Usuario findById(Long id, Connection connection) throws UsuarioNotFoundException, SQLException {
+        final String sql = "SELECT * FROM T_USUARIO WHERE id_usuario = ?";
+        Usuario usuario = null;
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setLong(1, id);
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    String nome = resultSet.getString("nm_usuario");
+                    String email = resultSet.getString("email");
+                    String senha = resultSet.getString("senha_login");
+                    String cpf = resultSet.getString("cpf");
+
+                    // Cria o objeto Usuario com os campos obrigatórios
+                    usuario = new Usuario(id, nome, email, senha, cpf);
+
+                    // Configura os campos opcionais, se presentes
+                    String dataNascimento = resultSet.getString("dt_nasc");
+                    if (dataNascimento != null && !dataNascimento.trim().isEmpty()) {
+                        usuario.setDataNascimento(dataNascimento);
+                    }
+                    String telefone = resultSet.getString("telefone_usuario");
+                    if (telefone != null && !telefone.trim().isEmpty()) {
+                        usuario.setTelefone(telefone);
+                    }
+                    String endereco = resultSet.getString("endereco_usuario");
+                    if (endereco != null && !endereco.trim().isEmpty()) {
+                        usuario.alterarEndereco(endereco);
+                    }
+                } else {
+                    throw new UsuarioNotFoundException();
+                }
+            }
+        }
+        System.out.println("O usuário encontrado no FindById é: " + usuario.toString());
+        return usuario;
+    }
 
 
     /**

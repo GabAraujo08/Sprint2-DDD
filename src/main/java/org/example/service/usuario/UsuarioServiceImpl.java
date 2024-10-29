@@ -48,9 +48,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void findById(Long id) throws SQLException, UsuarioNotFoundException {
+    public Usuario findById(Long id) throws SQLException, UsuarioNotFoundException {
         Connection connection = DatabaseConnectionFactory.create().get();
-        this.dao.findById(id, connection);
-        connection.commit();
+        try {
+            Usuario usuario = this.dao.findById(id, connection);
+            connection.commit();
+            return usuario;
+        } catch (SQLException | UsuarioNotFoundException e) {
+            connection.rollback();
+            throw e;
+        } finally {
+            connection.close();
+        }
     }
+
 }

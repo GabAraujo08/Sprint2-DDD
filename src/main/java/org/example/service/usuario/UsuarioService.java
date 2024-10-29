@@ -16,5 +16,5 @@ public interface UsuarioService {
 
     void delete(String cpf) throws SQLException, UsuarioNotFoundException;
 
-    void findById(Long id) throws SQLException, UsuarioNotFoundException;
+    Usuario findById(Long id) throws SQLException, UsuarioNotFoundException;
 }

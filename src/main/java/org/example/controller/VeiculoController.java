@@ -5,6 +5,8 @@ import org.example.entities.usuario.Usuario;
 import org.example.entities.veiculo.Veiculo;
 import org.example.exceptions.usuario.UsuarioNotFoundException;
 import org.example.exceptions.veiculo.VeiculoNotSavedException;
+import org.example.service.usuario.UsuarioService;
+import org.example.service.usuario.UsuarioServiceFactory;
 import org.example.service.veiculo.VeiculoService;
 import org.example.service.veiculo.VeiculoServiceFactory;
 
@@ -18,7 +20,7 @@ import java.util.Map;
 public class VeiculoController {
 
     private final VeiculoService veiculoService = VeiculoServiceFactory.create();
-
+    private final UsuarioService usuarioService = UsuarioServiceFactory.create();
 
     @GET
     @Path("/hello")
@@ -39,7 +41,10 @@ public class VeiculoController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response add(VeiculoDto input) {
         try {
-            Usuario proprietario = usuarioServiceImpl.findById(input.getProprietario());
+            // Busca o proprietário pelo ID fornecido
+            Usuario proprietario = usuarioService.findById(input.getProprietarioId());
+            System.out.println("O DONO DO VEICULO É: " + proprietario.toString());
+
             Veiculo veiculo = new Veiculo(
                     input.getMarca(),
                     input.getModelo(),
@@ -47,7 +52,7 @@ public class VeiculoController {
                     input.getPlaca(),
                     input.getCor(),
                     input.getKilometragem(),
-                    proprietario,  // Passe o objeto Usuario aqui
+                    proprietario, // Passe o objeto Usuario aqui
                     input.getChassi(),
                     input.getTipo()
             );
@@ -69,6 +74,7 @@ public class VeiculoController {
                     .build();
         }
     }
+
 
 
 

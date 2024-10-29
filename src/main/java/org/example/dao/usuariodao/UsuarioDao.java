@@ -20,5 +20,5 @@ public interface UsuarioDao {
 
     void delete(String cpf, Connection connection) throws UsuarioNotFoundException, SQLException;
 
-//    Usuario findById(Long id, Connection connection) throws UsuarioNotFoundException, SQLException;
+    Usuario findById(Long id, Connection connection) throws UsuarioNotFoundException, SQLException;
 }
