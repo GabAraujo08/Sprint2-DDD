@@ -84,11 +84,20 @@ public class UsuarioController {
     }
 
     @PUT
-    @Path("/update/{id}")
+    @Path("/update/{cpf}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") Long id, UsuarioDto input) {
-        return null;
+    public Response update(@PathParam("cpf") String cpf, UsuarioDto input) {
+        try {
+            Usuario usuario = this.usuarioService.update(new Usuario(null, input.getNome(), input.getEndereco(), input.getSenha(), input.getEmail(), input.getDataNascimento(), cpf, input.getTelefone()));
+            return Response.status(Response.Status.OK).entity(usuario).build();
+        } catch (UsuarioNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } catch (SQLException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(Map.of("mensagem", "Erro inesperado ao tentar atualizar usuário. Detalhes técnicos: " + e.getMessage()))
+                    .build();
+        }
     }
 
     @DELETE

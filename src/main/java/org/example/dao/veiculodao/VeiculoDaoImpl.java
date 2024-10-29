@@ -1,51 +1,57 @@
 package org.example.dao.veiculodao;
 
-import org.example.entities.usuario.Usuario;
 import org.example.entities.veiculo.Veiculo;
+import org.example.exceptions.veiculo.VeiculoNotSavedException;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.logging.Logger;
 
 public class VeiculoDaoImpl implements VeiculoDao{
 
-    private final Connection connection;
-
-    public VeiculoDaoImpl(Connection connection) {
-        this.connection = connection;
-    }
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
 
     @Override
-    public void create(Veiculo veiculo) throws SQLException {
-        String sql = "INSERT INTO T_VEICULO(placa, fk_cpf, marca_veiculo, modelo_veiculo, ano_fabricacao, cor, km_veiculo, tipo) VALUES(?,?,?,?,?,?,?,?";
+    public Veiculo create(Veiculo veiculo, Connection connection) throws SQLException, VeiculoNotSavedException {
+        final String sql = "INSERT INTO T_VEICULO (placa, fk_id_usuario, marca_veiculo, modelo_veiculo, ano_fabricacao, cor, km_veiculo, tipo_veiculo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-//        CREATE TABLE T_VEICULO(
-//                placa varchar2(9) PRIMARY KEY,
-//                fk_cpf CHAR(12),
-//                FOREIGN KEY (fk_cpf) REFERENCES T_USUARIO(cpf),
-//                marca_veiculo varchar2(20) NOT NULL,
-//                modelo_veiculo varchar2(50) NOT NULL,
-//                ano_fabricacao CHAR(4),
-//                cor varchar2(30),
-//                km_veiculo INT CHECK (km_veiculo >= 0),
-//                tipo varchar2(20)
-//        );
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, veiculo.getPlaca());
+            pstmt.setLong(2, veiculo.getProprietario().getId());
+            pstmt.setString(3, veiculo.getMarca());
+            pstmt.setString(4, veiculo.getModelo());
+            pstmt.setString(5, String.valueOf(veiculo.getAno()));
+            pstmt.setString(6, veiculo.getCor());
+            pstmt.setInt(7, veiculo.getKilometragem());
+            pstmt.setString(8, veiculo.getTipo());
 
+            int linhasAlteradas = pstmt.executeUpdate();
+
+            // Verifica se a inserção foi bem-sucedida
+            if (linhasAlteradas == 0) {
+                throw new VeiculoNotSavedException();
+            }
+        }catch (SQLException e){
+            logger.warning("Erro ao salvar veiculo: "+e.getMessage());
+        }
+        return veiculo;
     }
 
-    @Override
-    public List<Usuario> readAll() throws SQLException {
-        return List.of();
-    }
 
-    @Override
-    public void delete(Long id) throws SQLException {
-
-    }
-
-    @Override
-    public void update(Veiculo veiculo) throws SQLException {
-
-    }
+//    @Override
+//    public List<Usuario> readAll() throws SQLException {
+//        return List.of();
+//    }
+//
+//    @Override
+//    public void delete(Long id) throws SQLException {
+//
+//    }
+//
+//    @Override
+//    public void update(Veiculo veiculo) throws SQLException {
+//
+//    }
 }

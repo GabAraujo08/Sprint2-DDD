@@ -34,13 +34,23 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario update(Usuario usuario) throws SQLException, UsuarioNotFoundException {
-        return null;
+        Connection connection = DatabaseConnectionFactory.create().get();
+        usuario = this.dao.update(usuario, connection);
+        connection.commit();
+        return usuario;
     }
 
     @Override
     public void delete(String cpf) throws SQLException, UsuarioNotFoundException {
         Connection connection = DatabaseConnectionFactory.create().get();
         this.dao.delete(cpf, connection);
+        connection.commit();
+    }
+
+    @Override
+    public void findById(Long id) throws SQLException, UsuarioNotFoundException {
+        Connection connection = DatabaseConnectionFactory.create().get();
+        this.dao.findById(id, connection);
         connection.commit();
     }
 }

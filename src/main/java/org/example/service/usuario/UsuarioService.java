@@ -15,4 +15,6 @@ public interface UsuarioService {
     Usuario update(Usuario usuario) throws SQLException, UsuarioNotFoundException;
 
     void delete(String cpf) throws SQLException, UsuarioNotFoundException;
+
+    void findById(Long id) throws SQLException, UsuarioNotFoundException;
 }

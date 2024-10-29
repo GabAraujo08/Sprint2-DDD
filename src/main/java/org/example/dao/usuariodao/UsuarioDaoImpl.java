@@ -3,7 +3,6 @@ package org.example.dao.usuariodao;
 import oracle.jdbc.internal.OracleTypes;
 import org.example.config.DatabaseConnectionFactory;
 import org.example.entities.usuario.Usuario;
-import org.example.exceptions.usuario.UsuarioDaoException;
 import org.example.exceptions.usuario.UsuarioNotFoundException;
 import org.example.exceptions.usuario.UsuarioNotSavedException;
 
@@ -121,24 +120,43 @@ public class UsuarioDaoImpl implements UsuarioDao {
      */
     @Override
     public Usuario update(Usuario usuario, Connection connection) throws UsuarioNotFoundException, SQLException {
-        final String sql = "UPDATE t_usuario SET nm_usuario = ?, email = ?, dt_nasc = ?, senha_login = ?, nr_usuario = ?, endereco_usuario = ? WHERE id = ?";
+        final String sqlUpdate = "UPDATE t_usuario SET nm_usuario = ?, email = ?, dt_nasc = ?, senha_login = ?, telefone_usuario = ?, endereco_usuario = ? WHERE cpf = ?";
+        final String sqlGetId = "SELECT id_usuario FROM t_usuario WHERE cpf = ?";
 
-        PreparedStatement pstmt = connection.prepareStatement(sql);
+        PreparedStatement pstmt = connection.prepareStatement(sqlUpdate);
         pstmt.setString(1, usuario.getNome());
         pstmt.setString(2, usuario.getEmail());
         pstmt.setDate(3, convertToDate(usuario.getDataNascimento()));
-        pstmt.setString(4, hashPassword(usuario.getSenha()));
+        pstmt.setString(4, usuario.getSenha());
         pstmt.setString(5, usuario.getTelefone());
         pstmt.setString(6, usuario.getEndereco());
-        pstmt.setLong(7, usuario.getId());
+        pstmt.setString(7, usuario.getCpf());
 
         int linhasAlteradas = pstmt.executeUpdate();
 
         if (linhasAlteradas == 0) {
-            throw new UsuarioDaoException("Usuário não encontrado no banco.");
+            throw new UsuarioNotFoundException();
         }
+
+        // Agora obtemos o ID do usuário atualizado
+        PreparedStatement pstmtGetId = connection.prepareStatement(sqlGetId);
+        pstmtGetId.setString(1, usuario.getCpf());
+
+        ResultSet rs = pstmtGetId.executeQuery();
+        if (rs.next()) {
+            usuario.setId(rs.getLong("id_usuario"));
+        } else {
+            throw new UsuarioNotFoundException();
+        }
+
+        // Fechar recursos
+        rs.close();
+        pstmtGetId.close();
+        pstmt.close();
+
         return usuario;
     }
+
 
 
     /**
@@ -160,6 +178,43 @@ public class UsuarioDaoImpl implements UsuarioDao {
             }
         }
     }
+
+//    public Usuario findById(long id, Connection connection) throws UsuarioNotFoundException, SQLException {
+//        final String sql = "SELECT * FROM T_USUARIO WHERE id_usuario = ?";
+//        Usuario usuario = null;
+//
+//        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+//            pstmt.setLong(1, id);
+//            try (ResultSet resultSet = pstmt.executeQuery()) {
+//                if (resultSet.next()) {
+//                    String nome = resultSet.getString("nm_usuario");
+//                    String email = resultSet.getString("email");
+//                    String senha = resultSet.getString("senha_login");
+//                    String cpf = resultSet.getString("cpf");
+//
+//                    // Cria o objeto Usuario com os campos obrigatórios
+//                    usuario = new Usuario(id, nome, email, senha, cpf);
+//
+//                    // Configura os campos opcionais, se presentes
+//                    String dataNascimento = resultSet.getString("dt_nasc");
+//                    if (dataNascimento != null && !dataNascimento.trim().isEmpty()) {
+//                        usuario.setDataNascimento(dataNascimento);
+//                    }
+//                    String telefone = resultSet.getString("telefone_usuario");
+//                    if (telefone != null && !telefone.trim().isEmpty()) {
+//                        usuario.setTelefone(telefone);
+//                    }
+//                    String endereco = resultSet.getString("endereco_usuario");
+//                    if (endereco != null && !endereco.trim().isEmpty()) {
+//                        usuario.alterarEndereco(endereco);
+//                    }
+//                } else {
+//                    throw new UsuarioNotFoundException();
+//                }
+//            }
+//        }
+//        return usuario;
+//    }
 
 
     /**
