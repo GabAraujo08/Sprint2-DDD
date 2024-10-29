@@ -4,6 +4,7 @@ import org.example.entities.usuario.Usuario;
 import org.example.exceptions.usuario.UsuarioNotFoundException;
 import org.example.exceptions.usuario.UsuarioNotSavedException;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 

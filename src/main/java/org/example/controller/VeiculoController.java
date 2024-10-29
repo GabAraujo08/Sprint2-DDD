@@ -1,9 +1,13 @@
 package org.example.controller;
 
+import org.example.dao.usuariodao.UsuarioDao;
+import org.example.dao.usuariodao.UsuarioDaoFactory;
+import org.example.dtos.UsuarioDto;
 import org.example.dtos.VeiculoDto;
 import org.example.entities.usuario.Usuario;
 import org.example.entities.veiculo.Veiculo;
 import org.example.exceptions.usuario.UsuarioNotFoundException;
+import org.example.exceptions.veiculo.VeiculoNotFoundException;
 import org.example.exceptions.veiculo.VeiculoNotSavedException;
 import org.example.service.usuario.UsuarioService;
 import org.example.service.usuario.UsuarioServiceFactory;
@@ -14,6 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 @Path("/veiculo")
@@ -53,7 +58,6 @@ public class VeiculoController {
                     input.getCor(),
                     input.getKilometragem(),
                     proprietario, // Passe o objeto Usuario aqui
-                    input.getChassi(),
                     input.getTipo()
             );
 
@@ -82,7 +86,14 @@ public class VeiculoController {
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        return null;
+
+        List<Veiculo> veiculos = veiculoService.readAll();
+
+        if (veiculos.isEmpty()) {
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return Response.status(Response.Status.OK)
+                .entity(this.veiculoService.readAll()).build();
     }
 
     @PUT
@@ -96,7 +107,18 @@ public class VeiculoController {
     @DELETE
     @Path("/delete/{placa}")
     public Response delete(@PathParam("placa") String placa) {
-        return null;
+        try{
+            this.veiculoService.delete(placa);
+        } catch (SQLException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(Map.of("mensagem", "Erro inesperado ao tentar deletar veículo. Detalhes técnicos"))
+                    .build();
+        } catch (VeiculoNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(Map.of("mensagem", "Veículo não encontrado."))
+                    .build();
+        }
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 }
 

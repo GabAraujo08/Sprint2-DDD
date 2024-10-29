@@ -10,11 +10,11 @@ public class Veiculo {
     private String cor;
     private Integer kilometragem;
     private Usuario proprietario;
-    private String chassi;
+
     private String tipo;
 
 
-    public Veiculo(String marca, String modelo, Integer ano, String placa, String cor, Integer kilometragem, Usuario proprietario, String chassi, String tipo) {
+    public Veiculo(String marca, String modelo, Integer ano, String placa, String cor, Integer kilometragem, Usuario proprietario, String tipo) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
@@ -22,7 +22,7 @@ public class Veiculo {
         this.cor = cor;
         this.kilometragem = kilometragem;
         this.proprietario = proprietario;
-        this.chassi = chassi;
+
         this.tipo = tipo;
     }
 
@@ -62,9 +62,7 @@ public class Veiculo {
         return proprietario;
     }
 
-    public String getChassi() {
-        return chassi;
-    }
+
 
     public void atualizarKilometragem(Integer kilometragem){
         try{
@@ -87,7 +85,7 @@ public class Veiculo {
         this.cor = null;
         this.kilometragem = null;
         this.proprietario = null;
-        this.chassi = null;
+
         this.tipo = null;
     }
     public void alterarCor(String cor){

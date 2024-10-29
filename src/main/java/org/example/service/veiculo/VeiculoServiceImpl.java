@@ -30,7 +30,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 
     @Override
     public List<Veiculo> readAll() {
-        return List.of();
+        return this.dao.readAll();
     }
 
     @Override
@@ -40,6 +40,8 @@ public class VeiculoServiceImpl implements VeiculoService {
 
     @Override
     public void delete(String placa) throws SQLException, VeiculoNotFoundException {
-
+        Connection connection = DatabaseConnectionFactory.create().get();
+        this.dao.delete(placa, connection);
+        connection.commit();
     }
 }

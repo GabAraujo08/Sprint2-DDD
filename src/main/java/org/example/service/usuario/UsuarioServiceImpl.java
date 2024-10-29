@@ -57,8 +57,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         } catch (SQLException | UsuarioNotFoundException e) {
             connection.rollback();
             throw e;
-        } finally {
-            connection.close();
         }
     }
 
