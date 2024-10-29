@@ -109,6 +109,28 @@ public class VeiculoDaoImpl implements VeiculoDao{
 
     @Override
     public Veiculo update(Veiculo veiculo, Connection connection) throws SQLException, VeiculoNotFoundException {
-        return null;
+        final String sql = "UPDATE t_veiculo SET marca_veiculo = ?, modelo_veiculo = ?, ano_fabricacao = ?, cor = ?, km_veiculo = ?, tipo_veiculo = ? WHERE placa = ?";
+        try{
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+
+            pstmt.setString(1, veiculo.getMarca());
+            pstmt.setString(2, veiculo.getModelo());
+            pstmt.setInt(3, veiculo.getAno());
+            pstmt.setString(4, veiculo.getCor());
+            pstmt.setInt(5, veiculo.getKilometragem());
+            pstmt.setString(6, veiculo.getTipo());
+            pstmt.setString(7, veiculo.getPlaca());
+
+
+            int linhasAlteradas = pstmt.executeUpdate();
+
+            if(linhasAlteradas == 0){
+                throw new VeiculoNotFoundException();
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new SQLException();
+        }
+        return veiculo;
     }
 }

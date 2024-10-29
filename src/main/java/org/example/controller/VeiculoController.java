@@ -101,7 +101,34 @@ public class VeiculoController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("placa") String placa, VeiculoDto input) {
-        return null;
+        try{
+            Veiculo veiculo = this.veiculoService.update(new Veiculo(
+                    input.getMarca(),
+                    input.getModelo(),
+                    input.getAno(),
+                    placa,
+                    input.getCor(),
+                    input.getKilometragem(),
+                    usuarioService.findById(input.getProprietarioId()),
+                    input.getTipo()
+
+            ));
+
+            return Response.status(Response.Status.OK)
+                    .entity(veiculo).build();
+        } catch (SQLException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(Map.of("mensagem", "Erro inesperado ao tentar atualizar veículo."))
+                    .build();
+        } catch (VeiculoNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(Map.of("mensagem", "Veículo não encontrado."))
+                    .build();
+        } catch (UsuarioNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(Map.of("mensagem", "Proprietário não encontrado."))
+                    .build();
+        }
     }
 
     @DELETE

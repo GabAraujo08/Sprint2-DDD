@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+
 public class VeiculoServiceImpl implements VeiculoService {
 
     private final VeiculoDao dao = VeiculoDaoFactory.create();
@@ -35,13 +36,26 @@ public class VeiculoServiceImpl implements VeiculoService {
 
     @Override
     public Veiculo update(Veiculo veiculo) throws SQLException, VeiculoNotFoundException {
-        return null;
+        Connection connection = DatabaseConnectionFactory.create().get();
+        try {
+            this.dao.update(veiculo, connection);
+            connection.commit();
+            return veiculo;
+        } catch (SQLException | VeiculoNotFoundException e) {
+            connection.rollback();
+            throw e;
+        }
     }
 
     @Override
     public void delete(String placa) throws SQLException, VeiculoNotFoundException {
         Connection connection = DatabaseConnectionFactory.create().get();
-        this.dao.delete(placa, connection);
-        connection.commit();
+        try {
+            this.dao.delete(placa, connection);
+            connection.commit();
+        } catch (SQLException | VeiculoNotFoundException e) {
+            connection.rollback();
+            throw e;
+        }
     }
 }
