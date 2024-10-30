@@ -92,7 +92,9 @@ public class UsuarioController {
             Usuario usuario = this.usuarioService.update(new Usuario(null, input.getNome(), input.getEndereco(), input.getSenha(), input.getEmail(), input.getDataNascimento(), cpf, input.getTelefone()));
             return Response.status(Response.Status.OK).entity(usuario).build();
         } catch (UsuarioNotFoundException e) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(Map.of("mensagem", "Usuário não encontrado"))
+                    .build();
         } catch (SQLException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(Map.of("mensagem", "Erro inesperado ao tentar atualizar usuário. Detalhes técnicos: " + e.getMessage()))
@@ -107,7 +109,9 @@ public class UsuarioController {
             this.usuarioService.delete(cpf);
             return Response.status(Response.Status.NO_CONTENT).build();
         } catch (UsuarioNotFoundException e) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(Map.of("mensagem", "Usuário não encontrado"))
+                    .build();
         } catch (SQLException e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(Map.of("mensagem", "Erro inesperado ao tentar deletar usuário. Detalhes técnicos: " + e.getMessage()))
