@@ -21,6 +21,15 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService = UsuarioServiceFactory.create();
 
+    @OPTIONS
+    @Path("")
+    public Response options() {
+        return Response.ok()
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .build();
+    }
 
     @GET
     @Path("/hello")
