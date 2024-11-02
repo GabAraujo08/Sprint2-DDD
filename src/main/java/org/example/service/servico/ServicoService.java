@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ServicoService {
-    Servico create(Servico usuario) throws ServicoNotSavedException, SQLException;
+    Servico create(Servico servico) throws ServicoNotSavedException, SQLException;
 
     List<Servico> readAll() ;
 
-    Servico update(Servico usuario) throws SQLException, ServicoNotFoundException;
+    Servico update(Servico servico) throws SQLException, ServicoNotFoundException;
 
     void delete(Long id) throws SQLException, ServicoNotFoundException;
 

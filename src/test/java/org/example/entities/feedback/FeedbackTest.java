@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class FeedbackTest {
     Usuario carlos = new Usuario(1l, "Carlos", "carlos@gmail.com", "12345678", "31413468012");
-    Mecanica mecanica = new Mecanica("nome", "endereco", "telefone", null, "cnpjMecanica");
+    Mecanica mecanica = new Mecanica(1l,"nome", "endereco", "telefone", "cnpjMecanica");
     @Test
     void quando_construtor_criado_todos_campos_diferente_null(){
         Feedback feedback = new Feedback(carlos, mecanica, "comentario", 5, 1);

@@ -1,24 +1,20 @@
-package org.example.entities.mecanica;
+package org.example.dtos;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.example.entities.servico.Servico;
 
-public class Mecanica {
+public class MecanicaDto {
     private Long id;
     private String nome;
     private String endereco;
     private String telefone;
     private String cnpjMecanica;
 
-    // Construtor
-    public Mecanica(Long id,String nome, String endereco, String telefone, String cnpjMecanica) {
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.cnpjMecanica = cnpjMecanica;
+
+    public MecanicaDto() {
+
 
     }
 
@@ -30,20 +26,20 @@ public class Mecanica {
         this.id = id;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {

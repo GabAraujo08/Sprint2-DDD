@@ -16,7 +16,7 @@ class OrcamentoTest {
     Servico servico = new Servico("nome", "descricao", "Elétrica", 20.0, 0l);
     Servico servico1 = new Servico("nome", "descricao", "Elétrica", 20.0, 0l);
     Servico servicoLista[] = {servico, servico1};
-    Mecanica mecanica = new Mecanica("nome", "endereco", "telefone", servicoLista, "cnpjMecanica");
+    Mecanica mecanica = new Mecanica(1l, "nome", "endereco", "telefone", "cnpjMecanica");
     @Test
     void quando_construtor_chamado_todos_campos_diferente_null(){
         Orcamento orcamento = new Orcamento(mecanica, servicoLista, pecaLista, 1);
