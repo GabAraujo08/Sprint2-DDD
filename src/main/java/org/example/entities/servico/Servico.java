@@ -5,17 +5,17 @@ import org.example.entities.categoriaservico.CategoriaServico;
 public class Servico {
     private String nome;
     private String descricao;
-    private CategoriaServico categoria;
+    private String categoria;
     private Double valor;
-    private Integer idServico;
+    private Long id;
 
-    public Servico(String nome, String descricao, CategoriaServico categoria, Double valor, Integer idServico) {
+    public Servico(String nome, String descricao, String categoria, Double valor, Long id) {
 
         this.nome = nome;
         this.descricao = descricao;
         this.categoria = categoria;
         this.valor = valor;
-        this.idServico = idServico;
+        this.id = id;
     }
 
     public String getNome() {
@@ -26,7 +26,7 @@ public class Servico {
         return descricao;
     }
 
-    public CategoriaServico getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
@@ -34,8 +34,8 @@ public class Servico {
         return valor;
     }
 
-    public Integer getIdServico() {
-        return idServico;
+    public Long getIdServico() {
+        return id;
     }
 
     public void alterarValorServico(Double valor){
@@ -53,7 +53,10 @@ public class Servico {
         }
         this.descricao = descricao;
     }
-    public void alterarCategoriaServico(CategoriaServico categoria){
+    public void alterarCategoriaServico(String categoria){
+        if (categoria == null || categoria.trim().isEmpty()) {
+            throw new IllegalArgumentException("A categoria do serviço não pode ser vazia.");
+        }
         this.categoria = categoria;
     }
 
@@ -62,7 +65,15 @@ public class Servico {
         this.descricao = null;
         this.categoria = null;
         this.valor = null;
-        this.idServico = null;
+        this.id = null;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+    public long getId() {
+        return id;
+    }
 }

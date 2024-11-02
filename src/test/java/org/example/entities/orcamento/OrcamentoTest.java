@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class OrcamentoTest {
     Peca peca = new Peca("nome", "descricao", 20.0, "xpto", 0);
     Peca pecaLista[] = {peca};
-    Servico servico = new Servico("nome", "descricao", CategoriaServico.MECANICA, 20.0, 0);
-    Servico servico1 = new Servico("nome", "descricao", CategoriaServico.ELETRICA, 20.0, 0);
+    Servico servico = new Servico("nome", "descricao", "Elétrica", 20.0, 0l);
+    Servico servico1 = new Servico("nome", "descricao", "Elétrica", 20.0, 0l);
     Servico servicoLista[] = {servico, servico1};
     Mecanica mecanica = new Mecanica("nome", "endereco", "telefone", servicoLista, "cnpjMecanica");
     @Test
