@@ -5,6 +5,7 @@ import org.example.config.DatabaseConnectionFactory;
 import org.example.entities.mecanica.Mecanica;
 import org.example.exceptions.mecanica.MecanicaNotFoundException;
 import org.example.exceptions.mecanica.MecanicaNotSavedException;
+import org.example.exceptions.servico.ServicoNotFoundException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -118,7 +119,17 @@ public class MecanicaDaoImpl implements MecanicaDao {
 
     @Override
     public void delete(Long id, Connection connection) throws MecanicaNotFoundException, SQLException {
+        final String sql = "DELETE FROM T_MECANICA WHERE id_mecanica = ?";
 
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setLong(1, id);
+
+            int linhasAlteradas = pstmt.executeUpdate();
+
+            if (linhasAlteradas == 0) {
+                throw new MecanicaNotFoundException();
+            }
+        }
     }
 
     @Override

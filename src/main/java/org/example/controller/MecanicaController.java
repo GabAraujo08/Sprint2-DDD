@@ -7,6 +7,7 @@ import org.example.entities.mecanica.Mecanica;
 import org.example.entities.servico.Servico;
 import org.example.exceptions.mecanica.MecanicaNotFoundException;
 import org.example.exceptions.mecanica.MecanicaNotSavedException;
+import org.example.exceptions.servico.ServicoNotFoundException;
 import org.example.service.mecanica.MecanicaService;
 import org.example.service.mecanica.MecanicaServiceFactory;
 
@@ -105,7 +106,6 @@ public class MecanicaController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("id") Long id, MecanicaDto input) {
         try {
-
             Mecanica mecanica = new Mecanica(
                     id,
                     input.getNome(),
@@ -114,20 +114,17 @@ public class MecanicaController {
                     input.getCnpjMecanica()
             );
 
-
             Mecanica mecanicaAtualizada = this.mecanicaService.update(mecanica);
 
 
             return Response.status(Response.Status.OK).entity(mecanicaAtualizada).build();
 
         } catch (MecanicaNotFoundException e) {
-
             return Response.status(Response.Status.NOT_FOUND)
                     .entity(Map.of("mensagem", "Mecânica não encontrada"))
                     .build();
 
         } catch (SQLException e) {
-
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(Map.of("mensagem", "Erro inesperado ao tentar atualizar a mecânica. Detalhes técnicos: " + e.getMessage()))
                     .build();
@@ -136,9 +133,21 @@ public class MecanicaController {
 
 
 
+
     @DELETE
     @Path("/delete/{id}")
     public Response delete(@PathParam("id") Long id) {
-       return null;
+        try {
+            this.mecanicaService.delete(id);
+            return Response.status(Response.Status.NO_CONTENT).build();
+        } catch (MecanicaNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(Map.of("mensagem", "Mecânica não encontrada"))
+                    .build();
+        } catch (SQLException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(Map.of("mensagem", "Erro inesperado ao tentar deletar a mecânica. Detalhes técnicos: " + e.getMessage()))
+                    .build();
+        }
     }
 }

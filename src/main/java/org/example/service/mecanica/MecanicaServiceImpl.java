@@ -48,7 +48,14 @@ public class MecanicaServiceImpl implements MecanicaService {
 
     @Override
     public void delete(Long id) throws SQLException, MecanicaNotFoundException {
-
+        Connection connection = DatabaseConnectionFactory.create().get();
+        try {
+            this.dao.delete(id, connection);
+            connection.commit();
+        } catch (SQLException | MecanicaNotFoundException e) {
+            connection.rollback();
+            throw e;
+        }
     }
 
     @Override
