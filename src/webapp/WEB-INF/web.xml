@@ -42,13 +42,6 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
-        <filter-name>CORSFilter</filter-name>
-        <filter-class>org.example.CORSFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>CORSFilter</filter-name>
-        <url-pattern>/*</url-pattern> <!-- Ou o padrão de URL desejado -->
-    </filter-mapping>
+
 
 </web-app>
